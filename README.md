@@ -1,10 +1,16 @@
-# Databricks MLOps with Asset Bundles
+# Creating and Deploying a Databricks App with Asset Bundles
+
 
 **Author:** Mehmet Acikgoz
 
 Welcome to this hands-on MLOps project designed to help you build, test, and deploy machine learning applications on Databricks using the new **Asset Bundles** feature and **Databricks Free Edition**. Whether you’re a data scientist, ML engineer, or Databricks enthusiast, this repo guides you through setting up a clean, scalable environment, managing the full ML lifecycle—from training and model registry to real-time deployment—and creating an interactive Streamlit app integrated with your model.
 
 The project emphasizes best practices such as version control with GitHub, unit testing, and CI/CD automation using GitHub Actions to ensure a smooth, production-ready workflow. Along the way, you’ll find practical code samples, clear documentation, and tips to avoid common pitfalls. Follow this series to confidently deploy Databricks ML apps and effectively manage your ML assets. Stay tuned for continuous updates and improvements!
+
+## Part-1: Development Environment Setup
+This part demonstrates a practical, step-by-step approach to **setting up a robust MLOps workflow using Databricks Asset Bundles**. The guide covers essential development environment setup, including installing **Git**, **Visual Studio Code**, and the high-performance **uv Python package manager** to streamline dependency management. It walks users through registering for the **Databricks Free Edition**, generating a **Personal Access Token (PAT)** for secure CLI authentication, and installing the **Databricks CLI** for seamless automation and resource management. With these tools configured, you can efficiently build, test, and deploy Databricks apps as asset bundles—enabling best practices like source control, CI/CD, and reproducible infrastructure for data and AI projects. 
+
+For a detailed walkthrough and practical tips, read the full article on [Medium](https://medium.com/@macikgozm/creating-and-deploying-a-databricks-app-with-asset-bundles-5ab51d552656).
 
 
 ## Getting started
