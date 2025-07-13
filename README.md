@@ -12,6 +12,10 @@ This part demonstrates a practical, step-by-step approach to **setting up a robu
 
 For a detailed walkthrough and practical tips, read the full article on [Medium](https://medium.com/@macikgozm/creating-and-deploying-a-databricks-app-with-asset-bundles-5ab51d552656).
 
+## Part-2: Project Setup
+This project demonstrates how to initialize and structure a Databricks MLOps application using Asset Bundles, building on a modern Python workflow for robust, reproducible development. The setup begins by scaffolding the project with the Databricks CLI, ensuring all essential files and directories are in place for a production-ready workflow. Unnecessary default folders are removed, and best-practice directories such as src/ (for core package code) and notebooks/ (for experimentation and training scripts) are added to keep the codebase modular and organized. Dependency management leverages uv for both core and optional development tools, enabling efficient installation and clear separation between production and development environments. The initial implementation features a minimal backend prediction API and a Streamlit-powered UI, providing an end-to-end workflow that can be run and tested locally from day one. This foundation supports agile, iterative development, with a focus on maintainability, testability, and future automation. 
+
+For a detailed step-by-step guide, see the accompanying Medium article.
 
 ## Getting started
 
