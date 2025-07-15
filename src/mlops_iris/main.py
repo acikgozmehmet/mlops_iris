@@ -34,8 +34,8 @@ def main() -> None:
     input_df = input_form()
     if st.button("🔮 Predict Species"):
         try:
-            token = get_databricks_token(host=config.HOST)
-            # token = os.getenv("ACCESS_TOKEN")
+            # token = get_databricks_token(host=config.HOST)
+            token = os.getenv("ACCESS_TOKEN")
             response = call_serving_endpoint(
                 serving_endpoint=config.SERVING_ENDPOINT, token=token, input_df=input_df
             )
