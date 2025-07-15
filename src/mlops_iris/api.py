@@ -8,36 +8,42 @@ import requests
 from requests.auth import HTTPBasicAuth
 
 
-def get_databricks_token(
-    host: str,
-    client_id: str = None,
-    client_secret: str = None,
-    grant_type: str = "client_credentials",
-    scope: str = "all-apis",
-) -> str:
-    """Retrieve an OAuth access token from a Databricks host using client credentials.
+def get_databricks_token() -> str:
+    token = os.getenv("ACCESS_TOKEN")
+    if not token:
+        raise EnvironmentError("ACCESS_TOKEN environment variable not set.")
+    return token
 
-    If client_id or client_secret are not provided, the function will attempt to read them from environment variables.
+# def get_databricks_token(
+#     host: str,
+#     client_id: str = None,
+#     client_secret: str = None,
+#     grant_type: str = "client_credentials",
+#     scope: str = "all-apis",
+# ) -> str:
+#     """Retrieve an OAuth access token from a Databricks host using client credentials.
 
-    :param host: The Databricks workspace host URL.
-    :param client_id: The OAuth client ID. If not provided, uses the DATABRICKS_CLIENT_ID environment variable.
-    :param client_secret: The OAuth client secret. If not provided, uses the DATABRICKS_CLIENT_SECRET environment variable.
-    :param grant_type: The OAuth grant type, defaulting to "client_credentials".
-    :param scope: The OAuth scope, defaulting to "all-apis".
-    :return: The OAuth access token as a string.
-    """
-    if client_id is None:
-        client_id = os.environ["DATABRICKS_CLIENT_ID"]
-    if client_secret is None:
-        client_secret = os.environ["DATABRICKS_CLIENT_SECRET"]
+#     If client_id or client_secret are not provided, the function will attempt to read them from environment variables.
 
-    response = requests.post(
-        f"{host}/oidc/v1/token",
-        auth=HTTPBasicAuth(client_id, client_secret),
-        data={"grant_type": grant_type, "scope": scope},
-    )
-    response.raise_for_status()  # Raises an error for bad responses
-    return response.json()["access_token"]
+#     :param host: The Databricks workspace host URL.
+#     :param client_id: The OAuth client ID. If not provided, uses the DATABRICKS_CLIENT_ID environment variable.
+#     :param client_secret: The OAuth client secret. If not provided, uses the DATABRICKS_CLIENT_SECRET environment variable.
+#     :param grant_type: The OAuth grant type, defaulting to "client_credentials".
+#     :param scope: The OAuth scope, defaulting to "all-apis".
+#     :return: The OAuth access token as a string.
+#     """
+#     if client_id is None:
+#         client_id = os.environ["DATABRICKS_CLIENT_ID"]
+#     if client_secret is None:
+#         client_secret = os.environ["DATABRICKS_CLIENT_SECRET"]
+
+#     response = requests.post(
+#         f"{host}/oidc/v1/token",
+#         auth=HTTPBasicAuth(client_id, client_secret),
+#         data={"grant_type": grant_type, "scope": scope},
+#     )
+#     response.raise_for_status()  # Raises an error for bad responses
+#     return response.json()["access_token"]
 
 
 def call_serving_endpoint(
