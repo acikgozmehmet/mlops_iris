@@ -5,12 +5,13 @@ import os
 import requests
 import streamlit as st
 
-
 if os.getenv("DATABRICKS_WORKSPACE_ID", None):
     from api import call_serving_endpoint, get_databricks_token
     from config import config
     from ui import display_result, inject_css, input_form, set_page, show_footer
 else:
+    from dotenv import load_dotenv
+
     from mlops_iris.api import call_serving_endpoint, get_databricks_token
     from mlops_iris.config import config
     from mlops_iris.ui import (
@@ -20,7 +21,7 @@ else:
         set_page,
         show_footer,
     )
-    from dotenv import load_dotenv
+
     load_dotenv(override=True)
 
 
@@ -33,8 +34,8 @@ def main() -> None:
     input_df = input_form()
     if st.button("🔮 Predict Species"):
         try:
-            # token = get_databricks_token(host=config.HOST)            
-            token = os.getenv("ACCESS_TOKEN")           
+            token = get_databricks_token(host=config.HOST)
+            # token = os.getenv("ACCESS_TOKEN")
             response = call_serving_endpoint(
                 serving_endpoint=config.SERVING_ENDPOINT, token=token, input_df=input_df
             )

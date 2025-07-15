@@ -1,5 +1,7 @@
 """ui module."""
+
 import os
+
 import pandas as pd
 import streamlit as st
 
@@ -29,7 +31,7 @@ def inject_css() -> None:
     This function reads the 'styles.css' file and applies its styles to the app using markdown.
     """
     # with open("styles.css") as f:
-    css_path = os.path.join(os.path.dirname(__file__), 'styles.css')
+    css_path = os.path.join(os.path.dirname(__file__), "styles.css")
     with open(css_path) as f:
         st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
 
