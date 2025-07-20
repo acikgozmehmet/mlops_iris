@@ -508,7 +508,6 @@ name = "mlops-iris"
 version = "0.0.1"
 source = { editable = "." }
 dependencies = [
-    { name = "python-dotenv" },
     { name = "streamlit" },
 ]
 
@@ -518,6 +517,7 @@ dev = [
     { name = "pre-commit" },
     { name = "pytest" },
     { name = "pytest-cov" },
+    { name = "python-dotenv" },
     { name = "requests" },
 ]
 
@@ -527,7 +527,7 @@ requires-dist = [
     { name = "pre-commit", marker = "extra == 'dev'", specifier = ">=4.2.0" },
     { name = "pytest", marker = "extra == 'dev'" },
     { name = "pytest-cov", marker = "extra == 'dev'", specifier = ">=6.2.1" },
-    { name = "python-dotenv", specifier = ">=1.1.1" },
+    { name = "python-dotenv", marker = "extra == 'dev'", specifier = ">=1.1.1" },
     { name = "requests", marker = "extra == 'dev'", specifier = ">=2.32.4" },
     { name = "streamlit", specifier = ">=1.46.1" },
 ]
