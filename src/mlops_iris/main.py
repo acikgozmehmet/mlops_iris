@@ -6,13 +6,13 @@ import requests
 import streamlit as st
 
 if os.getenv("DATABRICKS_WORKSPACE_ID", None):
-    from api import call_serving_endpoint, get_databricks_token
+    from api import call_serving_endpoint
     from config import config
     from ui import display_result, inject_css, input_form, set_page, show_footer
 else:
     from dotenv import load_dotenv
 
-    from mlops_iris.api import call_serving_endpoint, get_databricks_token
+    from mlops_iris.api import call_serving_endpoint
     from mlops_iris.config import config
     from mlops_iris.ui import (
         display_result,
