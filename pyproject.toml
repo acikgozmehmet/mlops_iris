@@ -26,6 +26,7 @@ dev = [
     "requests>=2.32.4",
     "pytest-cov>=6.2.1",
     "pre-commit>=4.2.0",
+    "python-dotenv>=1.1.1",
 ]
 
 [tool.pytest.ini_options]
@@ -43,3 +44,26 @@ packages = ["src/mlops_iris"]
 
 [project.scripts]
 main = "mlops_iris.main:main"
+
+[tool.ruff]
+line-length = 100
+
+lint.select = [
+    "F",  # pyflakes rules
+    "E",  # pycodestyle error rules
+    "W",  # pycodestyle warning rules
+    "B",  # flake8-bugbear rules
+    "I",  # isort rules
+    "D",  # pydocstyle rules
+]
+
+lint.ignore = [
+    "E501", # line-too-long
+    "D203", # incorrect-blank-line-before-class
+    "D213", # multi-line-summary-second-line
+]
+
+
+[tool.ruff.format]
+indent-style = "space"
+docstring-code-format = true
