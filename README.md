@@ -15,7 +15,14 @@ For a detailed walkthrough and practical tips, read the full article on [Medium]
 ## Part-2: Project Setup
 This project demonstrates how to initialize and structure a Databricks MLOps application using Asset Bundles, building on a modern Python workflow for robust, reproducible development. The setup begins by scaffolding the project with the Databricks CLI, ensuring all essential files and directories are in place for a production-ready workflow. Unnecessary default folders are removed, and best-practice directories such as src/ (for core package code) and notebooks/ (for experimentation and training scripts) are added to keep the codebase modular and organized. Dependency management leverages uv for both core and optional development tools, enabling efficient installation and clear separation between production and development environments. The initial implementation features a minimal backend prediction API and a Streamlit-powered UI, providing an end-to-end workflow that can be run and tested locally from day one. This foundation supports agile, iterative development, with a focus on maintainability, testability, and future automation.
 
-For a detailed step-by-step guide, see the accompanying Medium article.
+For a detailed step-by-step guide, see the accompanying Medium article on [Medium](https://medium.com/@macikgozm/creating-and-deploying-a-databricks-app-with-asset-bundles-f9395eb46f91)
+
+
+## Part-3: Model Development & Deployment  
+This article takes the project from setup to action, walking through the full lifecycle of developing and deploying a machine learning model in Databricks using Asset Bundles. It starts by ensuring the project is correctly configured and deployed, leveraging the Databricks CLI to validate and upload the bundle for reliable, environment-agnostic development. The workflow emphasizes organization and governance by setting up a Unity Catalog catalog and schema for structured data and model storage. Model development leverages scikit-learn pipelines for robust preprocessing and training on the classic Iris dataset, with seamless experiment tracking and model management handled via MLflow—capturing metrics, parameters, signatures, and input datasets for reproducibility. The model is then registered in Unity Catalog to enforce discoverability and version-controlled governance, before being deployed as a REST endpoint with Databricks Model Serving, complete with scalable serving options and permission management for secure API consumption. This end-to-end workflow ensures production readiness, collaborative development, and cost-efficient deployment practices, paving the way for fully integrated app experiences in subsequent installments.
+
+For the full walkthrough and code samples, read the original [article](https://medium.com/@macikgozm/creating-and-deploying-a-databricks-app-with-asset-bundles-03382a648e90)
+
 
 ## Getting started
 
