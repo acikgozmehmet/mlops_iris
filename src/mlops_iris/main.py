@@ -12,7 +12,11 @@ if os.getenv("DATABRICKS_WORKSPACE_ID", None):
 else:
     from dotenv import load_dotenv
 
-    from mlops_iris.api import call_serving_endpoint
+    load_dotenv(override=True)
+    from mlops_iris.api import (  # noqa: F401  # ignore unused import warnings
+        call_serving_endpoint,
+        get_databricks_token,
+    )
     from mlops_iris.config import config
     from mlops_iris.ui import (
         display_result,
@@ -21,8 +25,6 @@ else:
         set_page,
         show_footer,
     )
-
-    load_dotenv(override=True)
 
 
 def main() -> None:
@@ -34,6 +36,7 @@ def main() -> None:
     input_df = input_form()
     if st.button("🔮 Predict Species"):
         try:
+            # Uncomment the following line to run the app locally using a stored access token.
             # token = get_databricks_token(host=config.HOST)
             token = os.getenv("ACCESS_TOKEN")
             response = call_serving_endpoint(
