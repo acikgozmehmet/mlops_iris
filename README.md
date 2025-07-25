@@ -18,13 +18,13 @@ This part demonstrates how to initialize and structure a Databricks MLOps applic
 For a detailed step-by-step guide, see the accompanying Medium article on [Medium](https://medium.com/@macikgozm/creating-and-deploying-a-databricks-app-with-asset-bundles-f9395eb46f91)
 
 
-## Part-3: Model Development & Deployment  
+## Part-3: Model Development & Deployment
 This part takes the project from setup to action, walking through the full lifecycle of developing and deploying a machine learning model in Databricks using Asset Bundles. It starts by ensuring the project is correctly configured and deployed, leveraging the Databricks CLI to validate and upload the bundle for reliable, environment-agnostic development. The workflow emphasizes organization and governance by setting up a Unity Catalog catalog and schema for structured data and model storage. Model development leverages scikit-learn pipelines for robust preprocessing and training on the classic Iris dataset, with seamless experiment tracking and model management handled via MLflow—capturing metrics, parameters, signatures, and input datasets for reproducibility. The model is then registered in Unity Catalog to enforce discoverability and version-controlled governance, before being deployed as a REST endpoint with Databricks Model Serving, complete with scalable serving options and permission management for secure API consumption. This end-to-end workflow ensures production readiness, collaborative development, and cost-efficient deployment practices, paving the way for fully integrated app experiences in subsequent installments.
 
 For the full walkthrough and code samples, read the original [article](https://medium.com/@macikgozm/creating-and-deploying-a-databricks-app-with-asset-bundles-03382a648e90)
 
 
-## Part-4: Streamlit App Development with MVC Architecture  
+## Part-4: Streamlit App Development with MVC Architecture
 This part guides readers through the development of a machine learning inference application using Streamlit on Databricks, with a strong focus on code structure, testing, and maintainability. Built around the classic Iris dataset, the app follows a clean MVC architecture to decouple logic, interface, and data flow—enhancing scalability and ease of testing. The backend (`api.py`) handles authentication and model inference securely, while the frontend (`ui.py`) delivers a polished user experience via modular Streamlit components. Central control is maintained through `main.py`, which orchestrates input handling and prediction display. Emphasis is placed on engineering best practices, including pre-commit hooks (via Ruff) for code quality, thoughtful use of environment configurations, and meaningful unit tests to ensure robustness. Readers walk away with a deployable, testable app that adheres to modern MLOps workflows—ready for local testing and future CI/CD integration.
 
 For a detailed step-by-step guide, see the accompanying Medium  [article](https://medium.com/@macikgozm/creating-and-deploying-a-databricks-app-with-asset-bundles-c16278cc9c82)

@@ -1,7 +1,8 @@
 # Databricks notebook source
 
-import mlflow
 import logging
+
+import mlflow
 from mlflow.models import infer_signature
 from sklearn import datasets
 from sklearn.compose import ColumnTransformer
@@ -13,7 +14,11 @@ from sklearn.preprocessing import StandardScaler
 
 # COMMAND ----------
 # Configure the logger (basic configuration)
-logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s',  handlers=[logging.StreamHandler()])
+logging.basicConfig(
+    level=logging.INFO,
+    format="%(asctime)s - %(levelname)s - %(message)s",
+    handlers=[logging.StreamHandler()],
+)
 logger = logging.getLogger(__name__)
 
 # COMMAND ----------
@@ -27,7 +32,9 @@ logger.info("The dataset is split into train and test sets.")
 
 # COMMAND ----------
 # Machine Learning with scikit-learn
-preprocessor = ColumnTransformer(transformers=[("std_scaler", StandardScaler(), iris.feature_names)])
+preprocessor = ColumnTransformer(
+    transformers=[("std_scaler", StandardScaler(), iris.feature_names)]
+)
 pipeline = Pipeline(
     steps=[
         ("preprocessor", preprocessor),
@@ -61,6 +68,8 @@ with mlflow.start_run() as run:
     signature = infer_signature(model_input=X_train, model_output=y_pred)
     dataset = mlflow.data.from_pandas(iris.frame, name="train_set")
     mlflow.log_input(dataset, context="training")
-    mlflow.sklearn.log_model(sk_model=pipeline, artifact_path="sklearn-lg-pipeline-model", signature=signature)  
+    mlflow.sklearn.log_model(
+        sk_model=pipeline, artifact_path="sklearn-lg-pipeline-model", signature=signature
+    )
 
 # COMMAND ----------

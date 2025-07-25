@@ -1,0 +1,70 @@
+name: CICD Workflow
+
+on:
+  push:
+    branches:
+      - '**'
+  pull_request:
+    branches:
+      - 'main'
+
+jobs:
+  ci_job:
+    name: CI job
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4.2.2
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v6.3.1
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: |
+          uv sync --all-extras
+
+      - name: Run pre-commit
+        run: |
+          uv run pre-commit run --all-files
+
+      - name: Run pytest
+        run: |
+          uv run pytest --disable-warnings --cov=./src  --cov-report=html
+
+      - name: Upload coverage HTML report
+        uses: actions/upload-artifact@v4.6.2
+        with:
+          name: coverage-html
+          path: htmlcov
+
+  deploy_job:
+    needs: ci_job
+    name: Deploy job
+    runs-on: ubuntu-latest
+    if: github.event_name == 'pull_request' && needs.ci_job.result == 'success'
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4.2.2
+
+      - name: Check for changes in src/
+        id: changed-src
+        uses: tj-actions/changed-files@v46
+        with:
+          files: |
+            src/**
+
+      - name: Set up Databricks CLI
+        if: steps.changed-src.outputs.any_changed == 'true'
+        uses: databricks/setup-cli@v0.246.0
+
+      - name: Deploy to Databricks with Personal Access Token
+        if: steps.changed-src.outputs.any_changed == 'true'
+        env:
+         DATABRICKS_TOKEN: ${{ secrets.DATABRICKS_TOKEN }}
+         DATABRICKS_HOST: ${{ secrets.DATABRICKS_HOST }}
+        run: |
+         # Example: update a Databricks Repo in your workspace
+         databricks bundle deploy
+         databricks bundle run inference_app

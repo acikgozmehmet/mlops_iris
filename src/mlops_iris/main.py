@@ -6,7 +6,10 @@ import requests
 import streamlit as st
 
 if os.getenv("DATABRICKS_WORKSPACE_ID", None):
-    from api import call_serving_endpoint
+    from api import (  # noqa: F401  # ignore unused import warnings
+        call_serving_endpoint,
+        get_databricks_token,
+    )
     from config import config
     from ui import display_result, inject_css, input_form, set_page, show_footer
 else:
@@ -36,9 +39,10 @@ def main() -> None:
     input_df = input_form()
     if st.button("🔮 Predict Species"):
         try:
+            # Uncomment the following line to run the app in deployment
+            token = get_databricks_token(host=config.HOST)
             # Uncomment the following line to run the app locally using a stored access token.
-            # token = get_databricks_token(host=config.HOST)
-            token = os.getenv("ACCESS_TOKEN")
+            # token = os.getenv("ACCESS_TOKEN")
             response = call_serving_endpoint(
                 serving_endpoint=config.SERVING_ENDPOINT, token=token, input_df=input_df
             )
