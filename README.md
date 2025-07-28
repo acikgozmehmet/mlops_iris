@@ -29,48 +29,10 @@ This part guides readers through the development of a machine learning inference
 
 For a detailed step-by-step guide, see the accompanying Medium  [article](https://medium.com/@macikgozm/creating-and-deploying-a-databricks-app-with-asset-bundles-c16278cc9c82)
 
+## Part-5: Creating and Deploying a Databricks App with Asset Bundles and CI/CD Integration
+In the final part of the MLOps with Databricks series, the focus is on deploying the Streamlit Iris inference app using Databricks Asset Bundles, first manually then automated with GitHub Actions to establish a seamless CI/CD pipeline. The article guides through preparing the project for deployment by adding configuration files such as the app specification and command files, installing necessary dependencies, and updating model endpoint references. Manual deployment steps include validating and deploying the bundle via the Databricks CLI and running the app on a compute instance, along with tips on inspecting logs, environment variables, and cleaning up resources. The CI/CD automation section explains the rationale for workflow automation, authentication approaches including Personal Access Tokens and Service Principals, and provides a detailed GitHub Actions YAML setup that integrates testing and conditional deployment upon code changes. This structured pipeline ensures reliable, repeatable deployments with quality checks, following professional best practices for scalable MLOps. The article concludes by emphasizing the benefits of combining solid app architecture with automation workflows to speed development and increase reliability when delivering ML applications on Databricks.
 
-## Getting started
-
-1. Install the Databricks CLI from https://docs.databricks.com/dev-tools/cli/databricks-cli.html
-
-2. Authenticate to your Databricks workspace, if you have not done so already:
-    ```
-    $ databricks configure
-    ```
-
-3. To deploy a development copy of this project, type:
-    ```
-    $ databricks bundle deploy --target dev
-    ```
-    (Note that "dev" is the default target, so the `--target` parameter
-    is optional here.)
-
-    This deploys everything that's defined for this project.
-    For example, the default template would deploy a job called
-    `[dev yourname] mlops_iris_job` to your workspace.
-    You can find that job by opening your workpace and clicking on **Workflows**.
-
-4. Similarly, to deploy a production copy, type:
-   ```
-   $ databricks bundle deploy --target prod
-   ```
-
-   Note that the default job from the template has a schedule that runs every day
-   (defined in resources/mlops_iris.job.yml). The schedule
-   is paused when deploying in development mode (see
-   https://docs.databricks.com/dev-tools/bundles/deployment-modes.html).
-
-5. To run a job or pipeline, use the "run" command:
-   ```
-   $ databricks bundle run
-   ```
-6. Optionally, install developer tools such as the Databricks extension for Visual Studio Code from
-   https://docs.databricks.com/dev-tools/vscode-ext.html.
-
-7. For documentation on the Databricks asset bundles format used
-   for this project, and for CI/CD configuration, see
-   https://docs.databricks.com/dev-tools/bundles/index.html.
+For the full walkthrough, see the Medium [article](https://medium.com/@macikgozm/creating-and-deploying-a-databricks-app-with-asset-bundles-938014023758)
 
 
 ---
